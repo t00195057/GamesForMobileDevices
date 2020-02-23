@@ -18,6 +18,7 @@ public class TouchControl : MonoBehaviour
     private Vector3 dragOrigin;
     float initial_rotation;
     float cameraSpeed = 0.01f;
+    Gyroscope my_gyro;
     Touch previousTouch2;
     void Start()
     {
@@ -28,8 +29,18 @@ public class TouchControl : MonoBehaviour
     float timeLeft = 2;
     void Update()
     {
-        
-        print(Input.acceleration);
+       
+        if (my_obj&&((Input.acceleration.x > 2|| Input.acceleration.x < -2) || (Input.acceleration.y > 2 || Input.acceleration.y < -2) || (Input.acceleration.z > 2 || Input.acceleration.z < -2)))
+        {
+            my_obj.transform.localScale += new Vector3(1,1,1);
+        }
+
+        if (my_obj && my_gyro!=Input.gyro)
+        {
+            my_obj.transform.rotation = my_gyro.attitude;
+            print(my_obj.transform.rotation);
+        }
+            my_gyro = Input.gyro;
         if (Input.touchCount >0)
         {
       if(tapped)
@@ -163,6 +174,12 @@ public class TouchControl : MonoBehaviour
 
                     }
                 }
+            }
+
+                if(Input.touchCount == 3 && my_obj)
+            {
+                Instantiate(my_obj, new Vector3(my_obj.transform.position.x * 2.0F, 0, 0), Quaternion.identity);
+                my_obj = null;
             }
                 if(Input.GetTouch(0).phase== TouchPhase.Ended)
                 { 

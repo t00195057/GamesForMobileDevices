@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Controlable.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
+    <Compile Include="Assets\GUIscript.cs" />
     <Compile Include="Assets\TouchControl.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/JackOHara/gamesForMobileDevices/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
